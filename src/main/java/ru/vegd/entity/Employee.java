@@ -1,4 +1,4 @@
-package com.mastery.java.task.dto;
+package ru.vegd.entity;
 
 public class Employee {
     private Long employeeId;

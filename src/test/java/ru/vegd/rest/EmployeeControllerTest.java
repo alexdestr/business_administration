@@ -1,4 +1,4 @@
-package com.mastery.java.task.rest;
+package ru.vegd.rest;
 
 public class EmployeeControllerTest {
 }
