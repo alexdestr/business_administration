@@ -6,20 +6,30 @@ import ru.vegd.dao.EmployeeDao;
 import ru.vegd.entity.Employee;
 import ru.vegd.service.EmployeeService;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeDao employeeDao;
 
-    public Boolean get(Long id) {
+    @Override
+    public List<Employee> getAll() {
+        return (List<Employee>) employeeDao.findAll();
+    }
+
+    @Override
+    public Employee get(Long id) {
         try {
-            employeeDao.findById(id);
-            return true;
+            Optional<Employee> employee = employeeDao.findById(id);
+            return employee.orElse(null);
         } catch (IllegalArgumentException e) {
-            return false;
+            return null;
         }
     }
 
+    @Override
     public Boolean save(Employee employee) {
         try {
             employeeDao.save(employee);
@@ -29,6 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
+    @Override
     public Boolean delete(Long id) {
         try {
             employeeDao.deleteById(id);
