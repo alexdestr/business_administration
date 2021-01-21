@@ -1,9 +1,8 @@
 package ru.vegd.rest;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-public class EmployeeController {
+public class EmployeeGetAllController {
     @Autowired
     private EmployeeService employeeService;
 
@@ -26,8 +25,16 @@ public class EmployeeController {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();
-        String response = gson.toJson(employeeList);
+        JsonElement response = gson.toJsonTree(employeeList);
 
-        return response;
+        JsonObject status = new JsonObject();
+        if (!response.isJsonNull()) {
+            status.addProperty("status", HttpStatus.OK.value());
+        } else {
+            status.addProperty("status", HttpStatus.BAD_REQUEST.value());
+        }
+        response.getAsJsonArray().add(status);
+
+        return response.toString();
     }
 }
