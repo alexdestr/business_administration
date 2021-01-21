@@ -1,4 +1,4 @@
 package ru.vegd.service;
 
-public class EmployeeService {
+public interface EmployeeService {
 }

@@ -1,4 +1,7 @@
 package ru.vegd.dao;
 
-public class EmployeeDao {
+import org.springframework.data.repository.CrudRepository;
+import ru.vegd.entity.Employee;
+
+public interface EmployeeDao extends CrudRepository<Employee, Long> {
 }
