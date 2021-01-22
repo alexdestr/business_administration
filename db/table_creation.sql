@@ -6,5 +6,5 @@ CREATE TABLE employee
     department_id BIGINT NOT NULL,
     job_title VARCHAR NOT NULL,
     gender VARCHAR NOT NULL,
-    date_of_birth TIMESTAMP NOT NULL
+    date_of_birth DATE NOT NULL
 );

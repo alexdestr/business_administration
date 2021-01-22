@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.vegd.adapter.LocalDateAdapter;
+import ru.vegd.adapter.LocalDateSerializerAdapter;
 import ru.vegd.entity.Employee;
 import ru.vegd.service.EmployeeService;
 
@@ -23,7 +23,7 @@ public class EmployeeGetAllController {
     public String getAllEmployees() {
         List<Employee> employeeList = employeeService.getAll();
         Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .registerTypeAdapter(LocalDate.class, new LocalDateSerializerAdapter())
                 .create();
         JsonElement response = gson.toJsonTree(employeeList);
 
