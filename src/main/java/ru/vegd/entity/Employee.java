@@ -1,12 +1,7 @@
 package ru.vegd.entity;
 
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity

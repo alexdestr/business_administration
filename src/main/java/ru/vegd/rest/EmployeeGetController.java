@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.vegd.adapter.LocalDateSerializerAdapter;
 import ru.vegd.entity.Employee;
+import ru.vegd.exception.EmployeeNotFoundException;
 import ru.vegd.service.EmployeeService;
 
 import java.time.LocalDate;
@@ -32,12 +33,9 @@ public class EmployeeGetController {
 
             if (!response.isJsonNull()) {
                 response.getAsJsonObject().addProperty("status", HttpStatus.OK.value());
-            } else {
-                response.getAsJsonObject().addProperty("status", HttpStatus.BAD_REQUEST.value());
+                return response.toString();
             }
-            return response.toString();
-        } else {
-            return "NOT OK"; // TODO: send to error handler
         }
+        throw new EmployeeNotFoundException();
     }
 }

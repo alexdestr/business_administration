@@ -9,7 +9,8 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class LocalDateSerializerAdapter implements JsonSerializer<LocalDate> {
+public class LocalDateSerializerAdapter
+        implements JsonSerializer<LocalDate> {
 
     @Override
     public JsonElement serialize(LocalDate date, Type typeOfSrc, JsonSerializationContext context) {

@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl
+        implements EmployeeService {
     @Autowired
     private EmployeeDao employeeDao;
 
