@@ -1,5 +1,7 @@
 package ru.vegd.entity;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
