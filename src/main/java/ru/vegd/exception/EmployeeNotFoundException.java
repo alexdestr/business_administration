@@ -1,6 +1,5 @@
 package ru.vegd.exception;
 
-
 public class EmployeeNotFoundException
         extends RuntimeException {
 

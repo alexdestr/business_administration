@@ -32,6 +32,19 @@ public class Employee {
     @Column(name = "date_of_birth", nullable = false, unique = true)
     private LocalDate dateOfBirth;
 
+    public Employee() {
+    }
+
+    public Employee(Long employeeId, String firstName, String lastName, Long departmentId, String jobTitle, Gender gender, LocalDate dateOfBirth) {
+        this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.departmentId = departmentId;
+        this.jobTitle = jobTitle;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public Long getEmployeeId() {
         return employeeId;
     }

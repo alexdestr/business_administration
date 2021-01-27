@@ -27,7 +27,7 @@ public class RestResponseEntityExceptionHandler
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", "Employee/employees not found");
-        body.put("status", status);
+        body.put("status", status.getReasonPhrase());
         body.put("statusCode", status.value());
         return handleExceptionInternal(ex, body,
                 new HttpHeaders(), status, request);
@@ -42,10 +42,9 @@ public class RestResponseEntityExceptionHandler
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", "Invalid data or employee already exist");
-        body.put("status", status);
+        body.put("status", status.getReasonPhrase());
         body.put("statusCode", status.value());
         return handleExceptionInternal(ex, body,
                 new HttpHeaders(), status, request);
     }
-
 }

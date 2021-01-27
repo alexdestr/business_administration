@@ -26,7 +26,7 @@ public class EmployeeUpdateController {
 
     @PostMapping("/employee/update")
     @ResponseBody
-    public String update(HttpServletRequest request) throws IOException {
+    public String updateEmployee(HttpServletRequest request) throws IOException {
         String requestBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 
         Gson gson = new GsonBuilder()
@@ -39,9 +39,9 @@ public class EmployeeUpdateController {
                 HttpStatus status = HttpStatus.OK;
                 Map<String, Object> body = new LinkedHashMap<>();
                 body.put("message", "Successfully updated");
-                body.put("status", status);
+                body.put("status", status.getReasonPhrase());
                 body.put("statusCode", status.value());
-                return body.toString();
+                return new Gson().toJson(body);
             }
         }
         throw new InvalidDataException();
