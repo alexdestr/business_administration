@@ -19,7 +19,6 @@ public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1449233550861998884L;
 
-    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
@@ -40,7 +39,6 @@ public class Employee implements Serializable {
     @Column(name = "job_title", nullable = false, unique = true)
     private String jobTitle;
 
-    @NotEmpty
     @Enumerated(EnumType.STRING)
     @Column(name = "gender", nullable = false, unique = true)
     private Gender gender;
