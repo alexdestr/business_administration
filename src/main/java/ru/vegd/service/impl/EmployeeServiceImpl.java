@@ -9,6 +9,10 @@ import ru.vegd.service.EmployeeService;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * {@code EmployeeServiceImpl} is a class which implemented {@link EmployeeService}.
+ * and provides business logic.
+ */
 @Service
 public class EmployeeServiceImpl
         implements EmployeeService {
@@ -16,11 +20,20 @@ public class EmployeeServiceImpl
     @Autowired
     private EmployeeDao employeeDao;
 
+    /**
+     * Returns all employees.
+     * @return List of all employees or empty list if there aren't employees in db.
+     */
     @Override
     public List<Employee> getAll() {
         return (List<Employee>) employeeDao.findAll();
     }
 
+    /**
+     * Retrieves employee by id.
+     * @param id must not be {@literal null}.
+     * @return the entity with the given id or {@literal null} if {@literal id} is {@literal null}
+     */
     @Override
     public Employee get(Long id) {
         try {
@@ -31,6 +44,12 @@ public class EmployeeServiceImpl
         }
     }
 
+    /**
+     * Saves or update a given entity. If {@literal employee.employeeId} isn't null will apply add
+     * operation, otherwise will apply update operation.
+     * @param employee must not be {@literal null}.
+     * @return {@literal true} if operation was successfully, {@literal false} otherwise.
+     */
     @Override
     public Boolean save(Employee employee) {
         try {
@@ -41,6 +60,11 @@ public class EmployeeServiceImpl
         }
     }
 
+    /**
+     * Deletes the entity with the given id.
+     * @param id must not be {@literal null}.
+     * @return {@literal true} if operation was successfully, {@literal false} otherwise.
+     */
     @Override
     public Boolean delete(Long id) {
         try {
