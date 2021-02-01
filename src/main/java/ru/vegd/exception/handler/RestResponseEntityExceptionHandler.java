@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import ru.vegd.exception.EmployeeNotFoundException;
 import ru.vegd.exception.InvalidDataException;
@@ -21,6 +23,7 @@ public class RestResponseEntityExceptionHandler
 
     @ExceptionHandler(value
             = { EmployeeNotFoundException.class })
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Object> handleEmployeeNotFoundException(
             RuntimeException ex, WebRequest request) {
 
@@ -36,6 +39,7 @@ public class RestResponseEntityExceptionHandler
 
     @ExceptionHandler(value
             = { InvalidDataException.class })
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Object> handleInvalidDataException(
             RuntimeException ex, WebRequest request) {
 
@@ -59,4 +63,17 @@ public class RestResponseEntityExceptionHandler
         return handleExceptionInternal(ex, body,
                 new HttpHeaders(), status, request);
     }
+
+    @Override
+    protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("message", "Not found.");
+        body.put("status", status.getReasonPhrase());
+        body.put("statusCode", status.value());
+        return handleExceptionInternal(ex, body,
+                new HttpHeaders(), status, request);
+    }
+
+
 }
