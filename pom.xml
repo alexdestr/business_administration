@@ -25,6 +25,7 @@
 		<javax.version>2.1.1</javax.version>
 		<lombok.version>1.18.16</lombok.version>
 		<javax-servlet.version>1.2</javax-servlet.version>
+		<liquibase.version>4.2.2</liquibase.version>
 	</properties>
 
 	<dependencies>
@@ -73,11 +74,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
@@ -131,6 +127,12 @@
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>${liquibase.version}</version>
 		</dependency>
 
 	</dependencies>
