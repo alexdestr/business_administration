@@ -3,6 +3,8 @@ package ru.vegd.rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import ru.vegd.entity.Employee;
 import ru.vegd.exception.EmployeeNotFoundException;
 import ru.vegd.service.EmployeeService;
 
+import java.net.HttpURLConnection;
 import java.time.LocalDate;
 
 @Controller
@@ -23,6 +26,9 @@ public class EmployeeGetController {
 
     @GetMapping("/employee/get")
     @ResponseBody
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpURLConnection.HTTP_CREATED, message = "Returns json with employee"),
+            @ApiResponse(code = HttpURLConnection.HTTP_BAD_REQUEST, message = "Returns json with error status")})
     public String getEmployee(@RequestParam("id") Long id) {
         Employee employee = null;
         if ((employee = employeeService.get(id)) != null) {

@@ -1,6 +1,9 @@
 package ru.vegd.rest;
 
 import com.google.gson.*;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.models.Swagger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import ru.vegd.entity.Employee;
 import ru.vegd.exception.EmployeeNotFoundException;
 import ru.vegd.service.EmployeeService;
 
+import java.net.HttpURLConnection;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,6 +25,9 @@ public class EmployeeGetAllController {
 
     @GetMapping("/employee/getAll")
     @ResponseBody
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpURLConnection.HTTP_CREATED, message = "Returns json with employees"),
+            @ApiResponse(code = HttpURLConnection.HTTP_BAD_REQUEST, message = "Returns json with error status")})
     public String getAllEmployees() {
         List<Employee> employeeList = employeeService.getAll();
         Gson gson = new GsonBuilder()

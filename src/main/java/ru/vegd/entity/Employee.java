@@ -1,5 +1,6 @@
 package ru.vegd.entity;
 
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@ApiModel
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1449233550861998884L;
